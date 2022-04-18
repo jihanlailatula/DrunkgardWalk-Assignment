@@ -1,0 +1,14 @@
+Jihan Lailatul A
+1301170455
+IF 41 03
+
+F(x) = (x+2)^2
+a = 0
+b = 1
+N = 100000
+
+Metode 1 (Rectangular)
+I = 6.32
+
+Metode 2 (Interval)
+5.81 <= I <= 6.89

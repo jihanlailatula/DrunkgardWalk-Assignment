@@ -1,0 +1,48 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import random
+from scipy.stats import norminvgauss
+
+def function(x):
+  return pow((x+2),2)
+
+def algo2 (a,b,N):
+  i = 1
+  f = function
+  W=[]
+  W.append(0)
+  while i != N:
+    x = np.random.uniform(a,b)
+    W.append(f(x))
+    i += 1
+  mean_f = sum(W)/len(W)
+  count = 0
+  for i in range (1,N):
+    count = count + pow(W[i] - mean_f,2)
+  var_f = count/(N-1)
+  var_f_mean = var_f/N
+  k = norminvgauss.pdf(0,1,0.95)
+  
+  res = (b-a) * (mean_f)
+  min = (b-a) * (mean_f -(k * var_f))
+  max = (b-a) * (mean_f + (k * var_f))
+  
+  print ("METODE 2")
+  print("Mean             : ", round(mean_f))
+  print("Var(f)           : ",round(var_f,2))
+  print("Rata-Rata Var(f) : ",round(var_f_mean,2))
+  print("K                : ", round(k,2))
+  print (round(min,2) , "<= I <=", round(max,2))
+
+def rect (a,b,M):
+  W = (b-a)/M
+  I=[]
+  for i in range (M):
+   xi = np.random.uniform(a,b)
+   I.append(W*function(xi))
+  print("METODE 1 RECTANGULAR")
+  print("Sum(I) : ",round(sum(I),2))
+
+algo2 (0,1,10000)
+rect(0,1,10000)
